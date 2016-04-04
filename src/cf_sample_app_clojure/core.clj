@@ -3,15 +3,55 @@
    (:require [compojure.core :refer :all]
              [compojure.route :as route]
              [ring.adapter.jetty :as jetty]
-             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
+   (:use     [hiccup.core]
+             [hiccup.page]
+             [hiccup.form]
+             [hiccup.element]))
+(require 'cf-sample-app-clojure.mongodb)
+(refer 'cf-sample-app-clojure.mongodb)
+
+(defn saveToDo [todo]
+  (saveToMongo todo)
+)
+
+(defn getToDo []
+  (getAllFromMongo)
+)
+
+(defn commonLayout [& content]
+ (html5
+   [:head
+    [:meta {:charset "utf-8"}]
+    [:title "ListOfTasks"]
+    (include-css "/css/style.css")
+    ]
+   [:body content]))
+
+(defn toDoPageInput []
+  (commonLayout 
+    [:h2 "Enter a new ToDo"]
+    [:form {:method "post" :action "/todo"}
+      [:input.text {:type "text" :name "todo"}]
+      [:br]
+      [:br]
+      [:input.action {:type "submit" :value "New"}]]))
+
+(defn toDoPageOutput [todo]
+  (saveToDo todo)
+  (commonLayout
+    [:h2 "Todo List"]
+    (ordered-list (getToDo))))
 
 (defroutes app-routes
   (GET "/" [] "Welcome to the Swisscom Application Cloud!")
+  (GET "/todo" [] (toDoPageInput))
+  (POST "/todo" [todo] (toDoPageOutput todo))
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (wrap-defaults app-routes (assoc-in site-defaults [:security :anti-forgery] false)))
 
 (defn -main
   [& [port]]
