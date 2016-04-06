@@ -20,5 +20,5 @@ lein run
 To deploy it to Cloud Foundry:
 
 ```cli
-cf push cf-sample-app-clojure -b java_buildpack -p target/cf-sample-app-clojure-0.1.0-SNAPSHOT-standalone.jar
+cf push my-clojure-app -b java_buildpack -p target/cf-sample-app-clojure-0.1.0-SNAPSHOT-standalone.jar
 ```
