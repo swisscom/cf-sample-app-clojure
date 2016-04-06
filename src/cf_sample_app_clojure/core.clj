@@ -11,12 +11,10 @@
              [hiccup.element]))
 
 (defn saveToDo [todo]
-  (saveToMongo todo)
-)
+  (saveToMongo todo))
 
 (defn getToDo []
-  (getAllFromMongo)
-)
+  (getAllFromMongo))
 
 (defn commonLayout [& content]
  (html5
