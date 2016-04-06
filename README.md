@@ -1,4 +1,4 @@
-# cf-sample-app-clojure
+# CF Sample App Clojure
 
 A Clojure sample web application that can be deployed to Cloud Foundry
 
@@ -11,6 +11,13 @@ lein uberjar
 ```
 
 This will compile the application and create a standalone jar file that can be deployed to Cloud Foundry using the java buildpack.
+To run it locally:
+
+```cli
+lein run
+```
+
+To deploy it to Cloud Foundry:
 
 ```cli
 cf push cf-sample-app-clojure -b java_buildpack -p target/cf-sample-app-clojure-0.1.0-SNAPSHOT-standalone.jar
