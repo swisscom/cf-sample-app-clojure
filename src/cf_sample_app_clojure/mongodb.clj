@@ -16,7 +16,7 @@
     (println "Document inserted")
     (println "Closing database")
     (mg/disconnect conn))
-  (catch Exception e (str "caught exception: " (.getMessage e)))))
+  (catch Exception e (println (str "caught exception: " (.getMessage e))))))
 
 (defn getAllFromMongo []
   (try 
@@ -28,4 +28,4 @@
          documents (doall (map #(get % :todo) all-documents-in-map))]
       (mg/disconnect conn)
       documents)
-  (catch Exception e (str "caught exception: " (.getMessage e)))))
+    (catch Exception e (println (str "caught exception: " (.getMessage e))))))
