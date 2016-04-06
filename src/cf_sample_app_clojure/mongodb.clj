@@ -1,10 +1,9 @@
 (ns cf-sample-app-clojure.mongodb
-(:require [monger.core :as mg]
-            [monger.collection :as mc])
+  (:require [monger.core :as mg]
+            [monger.collection :as mc]
+            [cf-sample-app-clojure.parse :refer :all])
   (:import [org.bson.types ObjectId]
            [com.mongodb DB WriteConcern]))
-(require 'cf-sample-app-clojure.parse)
-(refer 'cf-sample-app-clojure.parse)
 
 (defn saveToMongo [document]
  (try 

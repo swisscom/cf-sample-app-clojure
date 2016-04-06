@@ -3,13 +3,12 @@
    (:require [compojure.core :refer :all]
              [compojure.route :as route]
              [ring.adapter.jetty :as jetty]
-             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
+             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+             [cf-sample-app-clojure.mongodb :refer :all])
    (:use     [hiccup.core]
              [hiccup.page]
              [hiccup.form]
              [hiccup.element]))
-(require 'cf-sample-app-clojure.mongodb)
-(refer 'cf-sample-app-clojure.mongodb)
 
 (defn saveToDo [todo]
   (saveToMongo todo)
