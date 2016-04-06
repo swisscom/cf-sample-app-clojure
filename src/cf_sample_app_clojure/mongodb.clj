@@ -1,10 +1,9 @@
 (ns cf-sample-app-clojure.mongodb
-(:require [monger.core :as mg]
-            [monger.collection :as mc])
+  (:require [monger.core :as mg]
+            [monger.collection :as mc]
+            [cf-sample-app-clojure.parse :refer :all])
   (:import [org.bson.types ObjectId]
            [com.mongodb DB WriteConcern]))
-(require 'cf-sample-app-clojure.parse)
-(refer 'cf-sample-app-clojure.parse)
 
 (defn saveToMongo [document]
  (try 
@@ -17,7 +16,7 @@
     (println "Document inserted")
     (println "Closing database")
     (mg/disconnect conn))
-  (catch Exception e (str "caught exception: " (.getMessage e)))))
+  (catch Exception e (println (str "caught exception: " (.getMessage e))))))
 
 (defn getAllFromMongo []
   (try 
@@ -29,4 +28,4 @@
          documents (doall (map #(get % :todo) all-documents-in-map))]
       (mg/disconnect conn)
       documents)
-  (catch Exception e (str "caught exception: " (.getMessage e)))))
+    (catch Exception e (println (str "caught exception: " (.getMessage e))))))
