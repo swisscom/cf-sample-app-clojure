@@ -10,12 +10,6 @@
              [hiccup.form]
              [hiccup.element]))
 
-(defn saveToDo [todo]
-  (saveToMongo todo))
-
-(defn getToDo []
-  (getAllFromMongo))
-
 (defn commonLayout [& content]
   (html5
     [:head
@@ -23,6 +17,12 @@
       [:title "ListOfTasks"]
       (include-css "/css/style.css")]
     [:body content]))
+
+(defn saveToDo [todo]
+  (saveToMongo todo))
+
+(defn getToDo []
+  (getAllFromMongo))
 
 (defn toDoPage [ & [todo]]
   (when todo
