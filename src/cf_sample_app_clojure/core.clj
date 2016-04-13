@@ -17,13 +17,12 @@
   (getAllFromMongo))
 
 (defn commonLayout [& content]
- (html5
-   [:head
-    [:meta {:charset "utf-8"}]
-    [:title "ListOfTasks"]
-    (include-css "/css/style.css")
-    ]
-   [:body content]))
+  (html5
+    [:head
+      [:meta {:charset "utf-8"}]
+      [:title "ListOfTasks"]
+      (include-css "/css/style.css")]
+    [:body content]))
 
 (defn toDoPage [ & [todo]]
   (when todo
@@ -33,10 +32,10 @@
     (ordered-list (getToDo))
     [:h2 "Enter a new ToDo"]
     [:form {:method "post" :action "/todo"}
-     [:input.text {:type "text" :name "todo"}]
-     [:br]
-     [:br]
-     [:input.action {:type "submit" :value "New"}]]))
+      [:input.text {:type "text" :name "todo"}]
+      [:br]
+      [:br]
+      [:input.action {:type "submit" :value "New"}]]))
 
 (defroutes app-routes
   (GET "/" [] "Welcome to the Swisscom Application Cloud!")

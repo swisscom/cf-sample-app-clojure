@@ -16,7 +16,7 @@
   :ring {:handler cf-sample-app-clojure.core/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                         [ring/ring-jetty-adapter "1.4.0"]
+                        [ring/ring-jetty-adapter "1.4.0"]
                         [ring/ring-mock "0.3.0"]]}}
   :main cf-sample-app-clojure.core
   :aot [cf-sample-app-clojure.core])

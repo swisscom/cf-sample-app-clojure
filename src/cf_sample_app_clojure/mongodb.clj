@@ -21,11 +21,11 @@
 (defn getAllFromMongo []
   (try 
     (let [credentials (getCredentials "mongodb")
-         uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
-         {:keys [conn db]} (mg/connect-via-uri uri)
-         coll "todos"
-         all-documents-in-map (mc/find-maps db coll)
-         documents (doall (map #(get % :todo) all-documents-in-map))]
+          uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
+          {:keys [conn db]} (mg/connect-via-uri uri)
+          coll "todos"
+          all-documents-in-map (mc/find-maps db coll)
+          documents (doall (map #(get % :todo) all-documents-in-map))]
       (mg/disconnect conn)
       documents)
     (catch Exception e (println (str "caught exception: " (.getMessage e))))))
