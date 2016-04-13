@@ -24,7 +24,7 @@
 (defn getToDo []
   (getAllFromMongo))
 
-(defn toDoPage [ & [todo]]
+(defn toDoPage [& [todo]]
   (when todo
     (saveToDo todo))
   (commonLayout

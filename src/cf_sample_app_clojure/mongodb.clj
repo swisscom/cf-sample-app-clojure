@@ -2,15 +2,15 @@
   (:require [monger.core :as mg]
             [monger.collection :as mc]
             [cf-sample-app-clojure.parse :refer :all])
-  (:import [org.bson.types ObjectId]
-           [com.mongodb DB WriteConcern]))
+  (:import  [org.bson.types ObjectId]
+            [com.mongodb DB WriteConcern]))
 
 (defn saveToMongo [document]
  (try 
-  (let  [credentials (getCredentials "mongodb")
-         uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
-         {:keys [conn db]} (mg/connect-via-uri uri)
-         coll "todos"]
+  (let [credentials (getCredentials "mongodb")
+        uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
+        {:keys [conn db]} (mg/connect-via-uri uri)
+        coll "todos"]
     (println "Inserting document")
     (mc/insert-and-return db coll {:todo document})
     (println "Document inserted")
