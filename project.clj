@@ -8,7 +8,7 @@
                  [compojure "1.4.0"]
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-jetty-adapter "1.4.0"]
-                 [hiccup "1.0.2"]]
+                 [hiccup "1.0.5"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler cf-sample-app-clojure.core/app}
   :profiles
