@@ -24,7 +24,7 @@
       (include-css "/css/style.css")]
     [:body content]))
 
-(defn toDoPage [ & [todo]]
+(defn toDoPage [& [todo]]
   (when todo
     (saveToDo todo))
   (commonLayout
