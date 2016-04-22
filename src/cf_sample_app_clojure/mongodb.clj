@@ -7,15 +7,15 @@
 
 (defn saveToMongo [document]
  (try 
-  (let [credentials (getCredentials "mongodb")
+   (let [credentials (getCredentials "mongodb")
         uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
         {:keys [conn db]} (mg/connect-via-uri uri)
         coll "todos"]
-    (println "Inserting document")
-    (mc/insert-and-return db coll {:todo document})
-    (println "Document inserted")
-    (println "Closing database")
-    (mg/disconnect conn))
+     (println "Inserting document")
+     (mc/insert-and-return db coll {:todo document})
+     (println "Document inserted")
+     (println "Closing database")
+     (mg/disconnect conn))
   (catch Exception e (println (str "caught exception: " (.getMessage e))))))
 
 (defn getAllFromMongo []
