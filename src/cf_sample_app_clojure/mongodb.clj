@@ -5,25 +5,24 @@
   (:import  [org.bson.types ObjectId]
             [com.mongodb DB WriteConcern]))
 
-(defn saveToMongo [document]
- (try 
-   (let [credentials (getCredentials "mongodb")
-        uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
-        {:keys [conn db]} (mg/connect-via-uri uri)
-        coll "todos"]
-     (println "Inserting document")
-     (mc/insert-and-return db coll {:todo document})
-     (println "Document inserted")
-     (println "Closing database")
-     (mg/disconnect conn))
+(defn- connectToMongo []
+  (let [credentials (getCredentials "mongodb")
+        uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")]
+    (mg/connect-via-uri uri)))
+
+(defn saveToMongo [document coll]
+  (try 
+    (let [{:keys [conn db]} (connectToMongo)]
+      (println "Inserting document")
+      (mc/insert-and-return db coll {:todo document})
+      (println "Document inserted")
+      (println "Closing database")
+      (mg/disconnect conn))
   (catch Exception e (println (str "caught exception: " (.getMessage e))))))
 
-(defn getAllFromMongo []
+(defn getAllFromMongo [coll]
   (try 
-    (let [credentials (getCredentials "mongodb")
-          uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")
-          {:keys [conn db]} (mg/connect-via-uri uri)
-          coll "todos"
+    (let [{:keys [conn db]} (connectToMongo)
           all-documents-in-map (mc/find-maps db coll)
           documents (doall (map #(get % :todo) all-documents-in-map))]
       (mg/disconnect conn)
