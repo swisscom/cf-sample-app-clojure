@@ -12,12 +12,12 @@
 
 (defn saveToMongo [document coll]
  (try 
-  (let [{:keys [conn db]} (connectToMongo)]
-    (println "Inserting document")
-    (mc/insert-and-return db coll {:todo document})
-    (println "Document inserted")
-    (println "Closing database")
-    (mg/disconnect conn))
+   (let [{:keys [conn db]} (connectToMongo)]
+     (println "Inserting document")
+     (mc/insert-and-return db coll {:todo document})
+     (println "Document inserted")
+     (println "Closing database")
+     (mg/disconnect conn))
   (catch Exception e (println (str "caught exception: " (.getMessage e))))))
 
 (defn getAllFromMongo [coll]
