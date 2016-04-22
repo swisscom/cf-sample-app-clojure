@@ -19,10 +19,10 @@
     [:body content]))
 
 (defn saveToDo [todo]
-  (saveToMongo todo))
+  (saveToMongo todo "todos"))
 
 (defn getToDo []
-  (getAllFromMongo))
+  (getAllFromMongo "todos"))
 
 (defn toDoPage [& [todo]]
   (when todo
