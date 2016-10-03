@@ -1,0 +1,12 @@
+---
+applications:
+- name: my-clojure-app
+  memory: 1G
+  instances: 1
+  buildpack: java_buildpack
+  path: target/cf-sample-app-clojure-0.1.0-SNAPSHOT-standalone.jar
+
+  host: my-random-hostname
+
+  services:
+  - my-mongodb

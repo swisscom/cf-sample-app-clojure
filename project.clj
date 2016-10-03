@@ -5,18 +5,14 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [compojure "1.4.0"]
-                 [ring/ring-defaults "0.1.5"]
-                 [ring/ring-jetty-adapter "1.4.0"]
+                 [compojure "1.5.1"]
+                 [ring/ring-defaults "0.2.1"]
+                 [ring/ring-jetty-adapter "1.5.0"]
                  [hiccup "1.0.5"]
-                 [com.novemberain/monger "3.0.2"]
-                 [environ "1.0.2"]
-                 [cheshire "5.5.0"]]
+                 [com.novemberain/monger "3.1.0"]
+                 [environ "1.1.0"]
+                 [cheshire "5.6.3"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler cf-sample-app-clojure.core/app}
-  :profiles
-  {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-jetty-adapter "1.4.0"]
-                        [ring/ring-mock "0.3.0"]]}}
   :main cf-sample-app-clojure.core
   :aot [cf-sample-app-clojure.core])
