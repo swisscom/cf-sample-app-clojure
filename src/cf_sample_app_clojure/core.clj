@@ -6,7 +6,7 @@
              [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defroutes app-routes
-  (GET "/" [] "Welcome to the Swisscom Application Cloud!")
+  (GET "/" [] "Welcome to Clojure on the Swisscom Application Cloud!")
   (route/resources "/")
   (route/not-found "Not Found"))
 
