@@ -7,7 +7,7 @@
 
 (defn- connectToMongo []
   (let [credentials (getCredentials "mongodb")
-        uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")]
+        uri (get credentials :uri "mongodb://127.0.0.1:27017/test")]
     (mg/connect-via-uri uri)))
 
 (defn saveToDB [document coll]
