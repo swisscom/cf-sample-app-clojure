@@ -16,5 +16,5 @@ A sample [Clojure](https://clojure.org/) application to deploy to Cloud Foundry 
 1. Install the [cf CLI](https://github.com/cloudfoundry/cli#downloads)
 1. Run `lein uberjar`
 1. Run `cf create-service mongodb small my-mongodb`
-1. Run `cf push my-clojure-app -p target/cf-sample-app-clojure-0.1.0-SNAPSHOT-standalone.jar -b https://github.com/cloudfoundry/java-buildpack.git --random-route`
+1. Run `cf push --random-route`
 1. Visit the given URL

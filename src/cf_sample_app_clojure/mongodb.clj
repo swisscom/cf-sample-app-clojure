@@ -10,8 +10,8 @@
         uri (get credentials :uri "mongodb://127.0.0.1:27017/monger-test")]
     (mg/connect-via-uri uri)))
 
-(defn saveToMongo [document coll]
-  (try 
+(defn saveToDB [document coll]
+  (try
     (let [{:keys [conn db]} (connectToMongo)]
       (println "Inserting document")
       (mc/insert-and-return db coll {:todo document})
@@ -20,8 +20,8 @@
       (mg/disconnect conn))
   (catch Exception e (println (str "caught exception: " (.getMessage e))))))
 
-(defn getAllFromMongo [coll]
-  (try 
+(defn getAllFromDB [coll]
+  (try
     (let [{:keys [conn db]} (connectToMongo)
           all-documents-in-map (mc/find-maps db coll)
           documents (doall (map #(get % :todo) all-documents-in-map))]

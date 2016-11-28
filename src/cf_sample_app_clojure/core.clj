@@ -18,29 +18,29 @@
       (include-css "/css/style.css")]
     [:body content]))
 
-(defn saveToDo [todo]
-  (saveToMongo todo "todos"))
+(defn createToDo [todo]
+  (saveToDB todo "todos"))
 
-(defn getToDo []
-  (getAllFromMongo "todos"))
+(defn findToDos []
+  (getAllFromDB "todos"))
 
 (defn toDoPage [& [todo]]
   (when todo
-    (saveToDo todo))
+    (createToDo todo))
   (commonLayout
     [:h2 "Todo List"]
-    (ordered-list (getToDo))
+    (ordered-list (findToDos))
     [:h2 "Enter a new ToDo"]
-    [:form {:method "post" :action "/todo"}
+    [:form {:method "post" :action "/todos"}
       [:input.text {:type "text" :name "todo"}]
       [:br]
       [:br]
       [:input.action {:type "submit" :value "New"}]]))
 
 (defroutes app-routes
-  (GET "/" [] "Welcome to the Swisscom Application Cloud!")
-  (GET "/todo" [] (toDoPage))
-  (POST "/todo" [todo] (toDoPage todo))
+  (GET "/" [] "I am awesome!")
+  (GET "/todos" [] (toDoPage))
+  (POST "/todos" [todo] (toDoPage todo))
   (route/resources "/")
   (route/not-found "Not Found"))
 
